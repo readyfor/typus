@@ -9,7 +9,7 @@ module Admin::Resources::PaginationHelper
       "typus_paginate"
     end
 
-    send(helper, items, options)
+    send(helper, items, options.dup)
   end
 
   # TODO: Quick and dirty pagination solution! We only want to go back and
