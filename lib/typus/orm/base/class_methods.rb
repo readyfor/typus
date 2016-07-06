@@ -145,8 +145,13 @@ module Typus
           end
         end
 
-        def adapter
-          @adapter ||= ::ActiveRecord::Base.connection_config[:adapter]
+        # 2016/7/6 by t.o.
+        # Rolify gem の同名メソッドとの名前衝突回避のためメソッド名を変更する（adapter -> rf_typus_adapter)
+        #def adapter
+        #  @adapter ||= ::ActiveRecord::Base.connection_config[:adapter]
+        #end
+        def rf_typus_adapter
+          @rf_typus_adapter ||= ::ActiveRecord::Base.connection_config[:adapter]
         end
 
         def typus_user_id?; end
