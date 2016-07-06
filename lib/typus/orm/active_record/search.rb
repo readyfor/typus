@@ -20,7 +20,10 @@ module Typus
                        end
 
               column_name = (key.match('\.') ? key : "#{table_name}.#{key}")
-              table_key = (adapter == 'postgresql') ? "LOWER(TEXT(#{column_name}))" : "#{column_name}"
+              # 2016/7/6 by t.o.
+              # adapter メソッドのメソッド名変更パッチに対応( adapter -> rf_typus_adapter)
+              #table_key = (adapter == 'postgresql') ? "LOWER(TEXT(#{column_name}))" : "#{column_name}"
+              table_key = (rf_typus_adapter == 'postgresql') ? "LOWER(TEXT(#{column_name}))" : "#{column_name}"
 
               search << "#{table_key} LIKE '#{_query}'"
             end
