@@ -22,15 +22,24 @@ Rails.application.routes.draw do
     end
 
     Typus.models.map(&:to_resource).each do |_resource|
-      get "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
-      post "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
-      patch "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
-      delete "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
+      get "#{_resource}(.:format)", controller: _resource, action: 'index'
+      %w(new edit show toggle position destroy).each do |_action|
+        get "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+      end
+      %w(new create update position bulk autocomplete toggle restore trash wipe).each do |_action|
+        post "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+        patch "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+        delete "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+      end
+      delete "#{_resource}/destroy/:id", controller: _resource, action: 'destroy'
     end
 
     Typus.resources.map(&:underscore).each do |_resource|
-      get "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
-      post "#{_resource}(/:action(/:id))(.:format)", :controller => _resource
+      get "#{_resource}(.:format)", controller: _resource, action: 'index'
+      %w(edit show destroy).each do |_action|
+        get "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+        post "#{_resource}(/#{_action}(/:id))(.:format)", controller: _resource, action: _action
+      end
     end
 
   end
