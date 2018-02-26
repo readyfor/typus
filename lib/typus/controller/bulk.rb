@@ -8,8 +8,8 @@ module Typus
 
       included do
         helper_method :bulk_actions
-        before_filter :set_bulk_action, :only => [:index]
-        before_filter :set_bulk_action_for_trash, :only => [:trash]
+        before_action :set_bulk_action, :only => [:index]
+        before_action :set_bulk_action_for_trash, :only => [:trash]
       end
 
       def set_bulk_action

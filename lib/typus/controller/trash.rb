@@ -9,7 +9,7 @@ module Typus
       extend ActiveSupport::Concern
 
       included do
-        before_filter :set_predefined_filter_for_trash, :only => [:index, :trash]
+        before_action :set_predefined_filter_for_trash, :only => [:index, :trash]
       end
 
       def set_predefined_filter_for_trash

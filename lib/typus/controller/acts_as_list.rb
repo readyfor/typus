@@ -9,8 +9,8 @@ module Typus
       extend ActiveSupport::Concern
 
       included do
-        before_filter :get_object, :only => [:position]
-        before_filter :check_resource_ownership, :only => [:position]
+        before_action :get_object, :only => [:position]
+        before_action :check_resource_ownership, :only => [:position]
       end
 
       def position

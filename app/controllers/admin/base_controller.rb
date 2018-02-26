@@ -2,7 +2,7 @@ class Admin::BaseController < ActionController::Base
 
   include Typus::Authentication::const_get(Typus.authentication.to_s.classify)
 
-  before_filter :verify_remote_ip, :reload_config_and_roles, :authenticate, :set_locale
+  before_action :verify_remote_ip, :reload_config_and_roles, :authenticate, :set_locale
 
   helper_method :admin_user, :current_role
 
