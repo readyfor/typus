@@ -16,7 +16,7 @@ module Typus
 
           # attr_protected :role, :status
 
-          validates :email, :presence => true, :uniqueness => { case_sensitive: true }, :format => { :with => Typus::Regex::Email }
+          validates :email, :presence => true, :uniqueness => { case_sensitive: false }, :format => { :with => Typus::Regex::Email }
           validates :password, :confirmation => true
           validates :password_digest, :presence => true
           validate :password_must_be_strong
