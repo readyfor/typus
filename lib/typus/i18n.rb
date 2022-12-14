@@ -18,7 +18,7 @@ module Typus
       #
       def t(key, options = {})
         options[:default] ||= key
-        ::I18n.t(key, options)
+        ::I18n.t(key, **options)
       end
 
       def default_locale
