@@ -1,15 +1,13 @@
 module Admin::Resources::PaginationHelper
 
   def admin_paginate(items, options)
-    helper = if defined?(Kaminari)
-      "paginate"
+    if defined?(Kaminari)
+      paginate(items, **options)
     elsif defined?(WillPaginate)
-      "will_paginate"
+      will_paginate(items, options.dup)
     else
-      "typus_paginate"
+      typus_paginate(items, options.dup)
     end
-
-    send(helper, items, options.dup)
   end
 
   # TODO: Quick and dirty pagination solution! We only want to go back and
