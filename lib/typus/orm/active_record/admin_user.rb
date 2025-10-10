@@ -22,7 +22,7 @@ module Typus
           validate :password_must_be_strong
           validates :role, :presence => true
 
-          serialize :preferences
+          serialize :preferences, coder: YAML
 
           before_save :set_token
         end
