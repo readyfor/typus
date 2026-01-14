@@ -7,7 +7,7 @@ module Typus
 
         def build_search_conditions(key, value)
           Array.new.tap do |search|
-            query = ::ActiveRecord::Base.connection.quote_string(value.downcase)
+            query = ::ActiveRecord::Base.lease_connection.quote_string(value.downcase)
 
             search_fields = typus_search_fields
             search_fields = search_fields.empty? ? { "name" => "@" } : search_fields
