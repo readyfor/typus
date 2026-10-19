@@ -32,6 +32,9 @@ Typus.setup do |config|
   # Define subdomain to use instead of additional path.
   # config.subdomain = "admin"
 
+  # Define constraints applied to all Typus routes.
+  # config.route_constraints = ->(request) { request.remote_ip == "127.0.0.1" }
+
   # Pagination options: These options are passed to the pagination method
   # which can be Kaminari or WillPaginate.
   # config.pagination = { :previous_label => "&larr; " + Typus::I18n.t("Previous"),

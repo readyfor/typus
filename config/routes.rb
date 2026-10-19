@@ -44,12 +44,14 @@ Rails.application.routes.draw do
 
   end
 
-  if Typus.subdomain
-    constraints :subdomain => Typus.subdomain do
-      namespace :admin, :path => "", &routes_block
+  constraints Typus.route_constraints do
+    if Typus.subdomain
+      constraints :subdomain => Typus.subdomain do
+        namespace :admin, :path => "", &routes_block
+      end
+    else
+      scope "admin", {:module => :admin, :as => "admin"}, &routes_block
     end
-  else
-    scope "admin", {:module => :admin, :as => "admin"}, &routes_block
   end
 
 end
