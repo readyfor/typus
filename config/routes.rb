@@ -50,7 +50,7 @@ Rails.application.routes.draw do
         namespace :admin, :path => "", &routes_block
       end
     else
-      scope "admin", {:module => :admin, :as => "admin"}, &routes_block
+      scope "admin", module: :admin, as: "admin", &routes_block
     end
   end
 
