@@ -68,6 +68,11 @@ module Typus
   mattr_accessor :subdomain
   @@subdomain = nil
 
+  # Constraints applied to all Typus routes. Accepts anything the router's
+  # +constraints+ accepts, such as a Hash or an object responding to +matches?+.
+  mattr_accessor :route_constraints
+  @@route_constraints = {}
+
   # Pagination options passed to pagination helper. Note that pagination
   # options are different in Kaminari and WillPaginate.
   mattr_accessor :pagination
