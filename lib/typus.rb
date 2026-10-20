@@ -5,6 +5,7 @@ require "support/string"
 
 require "typus/engine"
 require "typus/regex"
+require "typus/routes"
 require "typus/version"
 
 require "typus/orm/base/class_methods"
@@ -68,10 +69,10 @@ module Typus
   mattr_accessor :subdomain
   @@subdomain = nil
 
-  # Constraints applied to all Typus routes. Accepts anything the router's
-  # +constraints+ accepts, such as a Hash or an object responding to +matches?+.
-  mattr_accessor :route_constraints
-  @@route_constraints = {}
+  # Set to false to draw the routes from the host application with
+  # +Typus.routes(self)+ instead of drawing them automatically.
+  mattr_accessor :draw_routes
+  @@draw_routes = true
 
   # Pagination options passed to pagination helper. Note that pagination
   # options are different in Kaminari and WillPaginate.

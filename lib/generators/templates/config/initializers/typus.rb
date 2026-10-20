@@ -32,8 +32,9 @@ Typus.setup do |config|
   # Define subdomain to use instead of additional path.
   # config.subdomain = "admin"
 
-  # Define constraints applied to all Typus routes.
-  # config.route_constraints = ->(request) { request.remote_ip == "127.0.0.1" }
+  # Set to false and call +Typus.routes(self)+ in config/routes.rb to draw
+  # the routes yourself, e.g. inside +constraints+ or +scope+.
+  # config.draw_routes = true
 
   # Pagination options: These options are passed to the pagination method
   # which can be Kaminari or WillPaginate.
